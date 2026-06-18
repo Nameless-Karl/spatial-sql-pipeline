@@ -143,7 +143,7 @@ See [`sql/05_stored_procedure.sql`](sql/05_stored_procedure.sql) for the complet
 
 The pipeline produces a table with one row per customer and one value of interest: `distance_to_closest_center` in kilometers.
 
-> **Screenshot:** Results table showing `customer_id` and `distance_to_closest_center` — ![Pipeline Result](assets/pipeline_result.png).
+> **Screenshot:** Results table showing `customer_id` and `distance_to_closest_center` — ![Pipeline Result](assets/pipeline_result.png)
 
 ---
 
