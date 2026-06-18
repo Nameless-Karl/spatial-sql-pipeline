@@ -18,7 +18,7 @@ That number feeds real operational decisions — whether to relocate a hub, open
 
 ## Pipeline Architecture
 
-![Pipeline Architecture](assets/pipeline_results.png)
+![Pipeline Architecture](assets/pipeline_architecture.png)
 
 ---
 
