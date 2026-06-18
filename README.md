@@ -3,7 +3,6 @@
 **A logistics coverage pipeline built in BigQuery using geographic SQL functions and stored procedures**
 
 > This project was completed as a structured lab exercise (Google Cloud Skills Boost: *Creating and Managing SQL Pipelines*). The SQL implementation follows the lab architecture. The analysis, limitations assessment, production architecture comparison, and commentary in this README are my own.
-
 ---
 
 ## Problem Statement
@@ -143,7 +142,8 @@ See [`sql/05_stored_procedure.sql`](sql/05_stored_procedure.sql) for the complet
 
 The pipeline produces a table with one row per customer and one value of interest: `distance_to_closest_center` in kilometers.
 
-> **Screenshot:** Results table showing `customer_id` and `distance_to_closest_center` — ![Pipeline Result](assets/pipeline_result.png)
+> **Screenshot:** Results table showing `customer_id` and `distance_to_closest_center`
+![Pipeline Result](assets/pipeline_results.png)
 
 ---
 
