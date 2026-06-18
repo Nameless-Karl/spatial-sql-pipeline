@@ -19,40 +19,7 @@ That number feeds real operational decisions — whether to relocate a hub, open
 ## Pipeline Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    BigQuery Public Dataset                       │
-│                                                                  │
-│   distribution_centers              users                        │
-│   (lat/lon as FLOAT64)              (lat/lon as FLOAT64)        │
-└───────────────┬─────────────────────────┬───────────────────────┘
-                │                         │
-                ▼ ST_GEOGPOINT            ▼ ST_GEOGPOINT
-┌───────────────────────┐    ┌────────────────────────┐
-│   centers             │    │   customers            │
-│   point_location      │    │   point_location       │
-│   (GEOGRAPHY)         │    │   (GEOGRAPHY)          │
-└───────────────┬───────┘    └──────────┬─────────────┘
-                │                        │
-                └──────────┬─────────────┘
-                           │
-                           ▼ ST_DISTANCE (scalar subquery)
-              ┌────────────────────────────┐
-              │   Minimum distance         │
-              │   per customer · km        │
-              └──────────────┬─────────────┘
-                             │
-                             ▼ Packaged into
-              ┌────────────────────────────┐
-              │  sp_create_load_tables     │
-              │  (stored procedure)        │
-              └──────────────┬─────────────┘
-                             │
-                             ▼
-              ┌────────────────────────────┐
-              │  distance_to_closest_      │
-              │  center (km)               │
-              │  one row per customer      │
-              └────────────────────────────┘
+![Pipeline Architecture](assets/pipeline_results.png)
 ```
 
 ---
