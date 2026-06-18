@@ -24,43 +24,6 @@ That number feeds real operational decisions — whether to relocate a hub, open
 ![Pipeline Architecture](assets/pipeline_architecture.png)
 
 ---
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    BigQuery Public Dataset                       │
-│                                                                  │
-│   distribution_centers              users                        │
-│   (lat/lon as FLOAT64)              (lat/lon as FLOAT64)        │
-└───────────────┬─────────────────────────┬───────────────────────┘
-                │                         │
-                ▼ ST_GEOGPOINT            ▼ ST_GEOGPOINT
-┌───────────────────────┐    ┌────────────────────────┐
-│   centers             │    │   customers            │
-│   point_location      │    │   point_location       │
-│   (GEOGRAPHY)         │    │   (GEOGRAPHY)          │
-└───────────────┬───────┘    └──────────┬─────────────┘
-                │                        │
-                └──────────┬─────────────┘
-                           │
-                           ▼ ST_DISTANCE (scalar subquery)
-              ┌────────────────────────────┐
-              │   Minimum distance         │
-              │   per customer · km        │
-              └──────────────┬─────────────┘
-                             │
-                             ▼ Packaged into
-              ┌────────────────────────────┐
-              │  sp_create_load_tables     │
-              │  (stored procedure)        │
-              └──────────────┬─────────────┘
-                             │
-                             ▼
-              ┌────────────────────────────┐
-              │  distance_to_closest_      │
-              │  center (km)               │
-              │  one row per customer      │
-              └────────────────────────────┘
-```
----
 
 ## Key Transformations
 
@@ -146,7 +109,7 @@ See [`sql/05_stored_procedure.sql`](sql/05_stored_procedure.sql) for the complet
 
 The pipeline produces a table with one row per customer and one value of interest: `distance_to_closest_center` in kilometers.
 
-> **Screenshot:** Results table showing `customer_id` and `distance_to_closest_center`- ![Pipeline Result](assets/pipeline_results.png).
+> **Screenshot:** Results table showing `customer_id` and `distance_to_closest_center`- ![Pipeline Result](assets/pipeline_results.png)
 
 ---
 
