@@ -1,3 +1,7 @@
+# Spatial Distribution SQL Pipeline
+
+> **Professional Context:** This project was developed as a core portfolio piece to demonstrate production-level thinking in Data Engineering and Analytics Engineering. It showcases advanced SQL patterns, geospatial analysis, and a critical architectural review of cloud warehouse infrastructure.
+
 # Spatial SQL Pipeline: Customer-to-Hub Distance Analysis
 
 **A logistics coverage pipeline built in BigQuery using geographic SQL functions and stored procedures**
